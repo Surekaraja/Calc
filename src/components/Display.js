@@ -3,7 +3,7 @@ import "./Display.css";
 
 const Display = ({ formula, input, onHistory, isShowHistory, onBackspace }) => {
   const onTextareaChanged = () => {
-    // Don't care
+    // No onchange action
   };
   return (
     <div className="display-toolbar">

@@ -51,7 +51,7 @@ const History = ({
           );
         })}
       </div>
-      <div className="bottom-btns">
+      <div className="bottom-buttons">
         <button id="clear-history" onClick={onClearHistory}>
           Clear
         </button>

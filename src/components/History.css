@@ -27,14 +27,14 @@
     color: #0e9aa7;
   }
   
-  .bottom-btns {
+  .bottom-buttons {
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
   }
   
-  .bottom-btns button {
+  .bottom-buttons button {
     text-transform: uppercase;
     font-size: 1.15rem;
     font-weight: 700;
@@ -50,7 +50,7 @@
     transition: background-color 0.35s ease-out;
   }
   
-  .bottom-btns button:hover {
+  .bottom-buttons button:hover {
     cursor: pointer;
     background-color: #0e9aa7;
   }
