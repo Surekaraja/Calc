@@ -3,9 +3,9 @@
     -webkit-box-flex: 1;
     flex: 1 1 calc(25% - 0.5rem);
     width: 25%;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     outline: none;
-    border: 1px solid #c6c6c6;
+    border: none;
     text-transform: uppercase;
     cursor: pointer;
     color: grey;
@@ -13,6 +13,10 @@
     -webkit-transition: background-color 1s ease-out;
     -moz-transition: background-color 1s ease-out;
     transition: background-color 1s ease-out;
+  }
+
+  .buttons #seven {
+    width:200%
   }
 
   .buttons .special {
@@ -26,7 +30,7 @@
   }
   
   .buttons button:hover {
-    border: 1px solid #aaa;
+    border: 1px solid #d6d6d6;
   }
   
   .buttons button:active {
@@ -44,6 +48,14 @@
   #subtract,
   #add {
     background-color: #f4f4f4;
+  }
+
+  #modulo,
+  #divide,
+  #multiply,
+  #subtract,
+  #add {
+    border: 1px solid #f4f4f4;
   }
   
   #modulo:active,
@@ -69,7 +81,7 @@
   #multiply:hover,
   #subtract:hover,
   #add:hover {
-    border: 1px solid #aaa;
+    border: 1px solid #d6d6d6;
   }
   
   #equals {
