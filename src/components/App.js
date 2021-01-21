@@ -95,6 +95,8 @@ const App = () => {
     if (Calculator.isNumber(input)) {
       if (input.includes("+")) {
         setInput(input.replace("+", "-"));
+      } else if (input.includes("-")) {
+        setInput(input.replace("-", "+"));
       } else {
         setInput(`+${input}`);
       }
