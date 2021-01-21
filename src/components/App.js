@@ -1,0 +1,171 @@
+import React, { useState } from "react";
+import Buttons from "./Buttons";
+import History from "./History";
+import Display from "./Display";
+import * as Calculator from "./utils";
+import "./App.css";
+
+const App = () => {
+  const [formula, setFormula] = useState([]);
+  const [history, setHistory] = useState([]);
+  const [input, setInput] = useState("0");
+  const [isShowHistory, setIsShowHistory] = useState(false);
+  const [afterCalculation, setAfterCalculation] = useState(false);
+
+  const onDigit = ({ target }) => {
+    const digit = target.innerText;
+
+    if (afterCalculation) {
+      setInput(digit);
+      setAfterCalculation(false);
+    } else if (input === "0") {
+      setInput(digit);
+    } else if (Calculator.isNotNumber(input)) {
+      setInput(digit);
+      setFormula(formula.concat(input));
+    } else {
+      setInput(input.concat(digit));
+    }
+  };
+
+  const onDecimal = ({ target }) => {
+    const decimal = target.innerText;
+
+    if (afterCalculation) {
+      setInput(`0${decimal}`);
+      setAfterCalculation(false);
+    } else if (Calculator.isNotNumber(input)) {
+      setInput(`0${decimal}`);
+      setFormula(formula.concat(input));
+    } else if (!input.includes(decimal)) {
+      setInput(input.concat(decimal));
+    }
+  };
+
+  const onOperator = ({ target }) => {
+    const operator = target.innerText;
+
+    if (Calculator.isOperator(input)) {
+      setInput(operator);
+      setAfterCalculation(false);
+    } else {
+      setFormula(formula.concat(input));
+      setInput(operator);
+      setAfterCalculation(false);
+    }
+  };
+
+  const onClear = () => {
+    setFormula([]);
+    setInput("0");
+    setAfterCalculation(false);
+  };
+
+  //   onSquareRoot() {
+  //     setState({
+  //       input: Math.sqrt(input),
+  //       afterCalculation: false
+  //     });
+  //   }
+
+  //   onSquare() {
+  //     setState({
+  //       input: input^2,
+  //       afterCalculation: false
+  //     });
+  //   }
+
+  // onPlusOrMinus() {
+  //     setState({
+  //       input: -input,
+  //       afterCalculation: false
+  //     });
+  //   }
+
+  const onBackspace = () => {
+    const currentInputLength = input.length;
+
+    if (input === "Infinity" || input === "-Infinity" || input === "NaN") {
+      setInput("0");
+      setAfterCalculation(false);
+    } else if (currentInputLength > 1) {
+      setInput(input.slice(0, currentInputLength - 1));
+      setAfterCalculation(false);
+    } else if (input !== "0") {
+      setInput("0");
+      setAfterCalculation(false);
+    } else if (formula.length > 0) {
+      setInput(formula[formula.length - 1]);
+      setFormula(formula.slice(0, formula.length - 1));
+      setAfterCalculation(false);
+    }
+  };
+
+  const onEqual = () => {
+    const finalFormula = formula.concat(input);
+    const result = Calculator.evaluate(finalFormula);
+
+    if (!Number.isNaN(result)) {
+      const newHistoryItem = {
+        formula: finalFormula,
+        result: result,
+      };
+
+      setInput(result + "");
+      setFormula([]);
+      setHistory([].concat(newHistoryItem, history));
+      setAfterCalculation(true);
+    }
+  };
+
+  const onHistory = () => {
+    setIsShowHistory(!isShowHistory);
+  };
+
+  const onClearHistory = () => {
+    setHistory([]);
+  };
+
+  const onHistoryItemClicked = ({ target }) => {
+    const number = target.getAttribute("value");
+
+    if (Calculator.isNumber(input)) {
+      setInput(number);
+    } else {
+      setInput(number);
+      setFormula(formula.concat(input));
+    }
+  };
+
+  return (
+    <div>
+      <div className="calculator">
+        <Display
+          formula={formula}
+          input={input}
+          onBackspace={onBackspace}
+          onHistory={onHistory}
+          isShowHistory={isShowHistory}
+        />
+
+        <Buttons
+          onClear={onClear}
+          onEqual={onEqual}
+          onDecimal={onDecimal}
+          onDigit={onDigit}
+          onOperator={onOperator}
+        />
+
+        <History
+          isShowHistory={isShowHistory}
+          history={history}
+          onHistoryItemClicked={onHistoryItemClicked}
+          onEqual={onEqual}
+          onClearHistory={onClearHistory}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default App;
