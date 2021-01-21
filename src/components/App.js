@@ -11,6 +11,7 @@ const App = () => {
   const [input, setInput] = useState("0");
   const [isShowHistory, setIsShowHistory] = useState(false);
   const [afterCalculation, setAfterCalculation] = useState(false);
+  const [historyLength, setHistoryLength] = useState(1);
 
   const onDigit = ({ target }) => {
     const digit = target.innerText;
@@ -55,32 +56,51 @@ const App = () => {
     }
   };
 
-  const onClear = () => {
+  //allClear to completely clear the history
+  const onAllClear = () => {
     setFormula([]);
     setInput("0");
     setAfterCalculation(false);
+    setHistory([]);
   };
 
-  //   onSquareRoot() {
-  //     setState({
-  //       input: Math.sqrt(input),
-  //       afterCalculation: false
-  //     });
-  //   }
+  //clear traverse the history list till it reaches the end of history.
+  const onClear = () => {
+    setFormula([]);
+    if (history.length && history.length >= historyLength && history[historyLength]) {
+      setInput(history[historyLength]?.result);
+      setHistoryLength(historyLength + 1);
+    } else {
+      setInput("0");
+      setHistoryLength(1);
+    }
+    setAfterCalculation(false);
+  };
 
-  //   onSquare() {
-  //     setState({
-  //       input: input^2,
-  //       afterCalculation: false
-  //     });
-  //   }
+  const onSquareRoot = () => {
+    if (Calculator.isNumber(input)) {
+      setInput(Math.sqrt(input));
+      setAfterCalculation(true);
+    }
+  };
 
-  // onPlusOrMinus() {
-  //     setState({
-  //       input: -input,
-  //       afterCalculation: false
-  //     });
-  //   }
+  const onSquare = () => {
+    if (Calculator.isNumber(input)) {
+      setInput(input * input);
+      setAfterCalculation(true);
+    }
+  };
+
+  const onPlusOrMinus = () => {
+    if (Calculator.isNumber(input)) {
+      if (input.includes("+")) {
+        setInput(input.replace("+", "-"));
+      } else {
+        setInput(`+${input}`);
+      }
+      setAfterCalculation(true);
+    }
+  };
 
   const onBackspace = () => {
     const currentInputLength = input.length;
@@ -150,10 +170,14 @@ const App = () => {
 
         <Buttons
           onClear={onClear}
+          onAllClear={onAllClear}
           onEqual={onEqual}
           onDecimal={onDecimal}
           onDigit={onDigit}
           onOperator={onOperator}
+          onSquareRoot={onSquareRoot}
+          onSquare={onSquare}
+          onPlusOrMinus={onPlusOrMinus}
         />
 
         <History

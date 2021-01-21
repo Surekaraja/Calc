@@ -4,19 +4,25 @@ import "./Buttons.css";
 const Buttons = (props) => {
   const {
     onClear,
-    onSquareRoot,
-    onSquare,
+    onAllClear,
     onOperator,
     onDigit,
+    onSquare,
+    onSquareRoot,
     onPlusOrMinus,
     onDecimal,
     onEqual,
   } = props;
   return (
     <div className="buttons">
-      <button id="clear" onClick={onClear}>
+      <div className="special">
+      <button id="all-clear" onClick={onAllClear}>
         AC
       </button>
+      <button id="clear" onClick={onClear}>
+        C
+      </button>
+      </div>
       <button id="square-root" onClick={onSquareRoot}>
         √
       </button>

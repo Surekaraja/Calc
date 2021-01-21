@@ -4,7 +4,7 @@ export const evaluate = (arrFormula) => {
   }
   
   export const isNotNumber = (input) => {
-    return input === '+' || input === '-' || input === '*' || input === '/' || input === '%';
+    return input === '+' || input === '-' || input === '*' || input === '/' || input === '√';
   }
   
   export const isNumber = (input) => {
@@ -12,12 +12,12 @@ export const evaluate = (arrFormula) => {
   }
   
   export const isOperator = (input) => {
-    return input === '+' || input === '-' || input === '*' || input === '/' || input === '%';
+    return input === '+' || input === '-' || input === '*' || input === '/';
   }
   
   export const getPriority = (input) => {
     if (input === '+' || input === '-') return 1;
-    else if (input === '*' || input === '/' || input === '%') return 2;
+    else if (input === '*' || input === '/') return 2;
     return 0;
   }
   
@@ -72,9 +72,6 @@ export const evaluate = (arrFormula) => {
             break;
           case '/':
             result = num2 / num1;
-            break;
-          case '%':
-            result = num2 % num1;
             break;
           default:
             console.log('Something else!!!');
