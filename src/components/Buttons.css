@@ -50,11 +50,11 @@
     background-color: #f4f4f4;
   }
 
-  #modulo,
-  #divide,
-  #multiply,
-  #subtract,
-  #add {
+  #modulo:hover,
+  #divide:hover,
+  #multiply:hover,
+  #subtract:hover,
+  #add:hover {
     border: 1px solid #f4f4f4;
   }
   
