@@ -67,7 +67,7 @@ const App = () => {
   //clear traverse the history list till it reaches the end of history.
   const onClear = () => {
     setFormula([]);
-    if (history.length && history.length >= historyLength && history[historyLength]) {
+    if (input !=="0" && history.length && history.length >= historyLength && history[historyLength]) {
       setInput(history[historyLength]?.result);
       setHistoryLength(historyLength + 1);
     } else {
