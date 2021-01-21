@@ -18,13 +18,13 @@
   }
   
   .history-item-result {
-    color: #3da4ab;
+    color: #2F4F4F;
     padding: 0 15px;
   }
   
   .history-item-result:hover {
     cursor: pointer;
-    color: #0e9aa7;
+    color: #000000;
   }
   
   .bottom-buttons {
@@ -41,7 +41,7 @@
     padding: 10px 15px;
     width: 50%;
     text-align: center;
-    background-color: #3da4ab;
+    background-color: #2F4F4F;
     outline: none;
     border: none;
     color: #fff;
@@ -52,7 +52,7 @@
   
   .bottom-buttons button:hover {
     cursor: pointer;
-    background-color: #0e9aa7;
+    background-color: #000000;
   }
   
   #calculate {
