@@ -27,7 +27,7 @@ const History = ({
       else element.style.overflowX = "initial";
     };
     addScrollbarIfNeeded(historyList.current);
-  }, [historyList]);
+  });
   const historyClassName = isShowHistory ? "history" : "history hidden";
 
   return (
